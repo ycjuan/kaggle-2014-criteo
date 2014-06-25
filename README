@@ -1,0 +1,114 @@
+3 Idiots' Approach for Display Advertising Challenge
+====================================================
+
+This README introduces how to run our code up. For the introduction to our
+approach, please see 
+
+    http://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf  
+
+
+System Requirement
+==================
+
+- 64-bit Unix-like operating system (We tested our code on Ubuntu 13.10)
+
+- Python3
+
+- g++ (with C++11 and OpenMP support)
+
+- at least 20GB memory and 50GB disk space
+
+- The datasets used in the competition:
+  train.csv (md5sum: ebf87fe3daa7d729e5c9302947050f41) and 
+  test.csv (md5sum: 8016f59e45abb37ae7f6e7956f30e052)
+
+
+Step-by-step
+============
+
+This section is divided into two parts. The first part introduces how to run
+our code with a toy example. After you finish this part, please follow the
+second part to run with the whole dataset.
+
+
+Tiny Example
+------------
+
+1. Create two symbolic links.
+
+     $ ln -s train.tiny.csv train.csv
+     $ ln -s test.tiny.csv test.csv
+
+2. Compile excutables, prepare files, and scan necessary information from the
+   training data.
+
+     $ make
+
+3. Generate the prediction file "submission.csv".
+
+     $ ./run.py
+
+4. Generate the checksum for submission.csv.
+
+     $ md5sum submission.csv
+     d29c2f9e846a0ea77a6f56e983316360  submission.csv
+
+   If you see the above checksum, congratulations!! Please run the following
+   command and move to the next sub-section.
+
+     $ make clean
+     $ rm -f train.csv test.csv
+
+
+The Whole Dataset
+-----------------
+
+1. Copy or link the training and test data to this directory. Their name should 
+   be "train.csv" and "test.csv", respectively.
+
+2. Check if your dataset is correct.
+
+     $ ./check.py
+
+2. Compile excutables, prepare files, and scan necessary information from the
+   training data. These step takes around an hour.
+    
+     $ make
+
+3. Generate the prediction file "submission.csv". (You may want to use more
+   threads. Please see "Miscellaneous 1".)
+
+     $ run.py
+
+
+Miscellaneous
+=============
+
+1. By default we use only one thread, so it may take a long time to train the
+   model. If you have multi-core CPUs, you may want to set NR_THREAD in run.py
+   to use all cores. On our machine with two six-core CPUs (intel E5-2620), it
+   takes around 3.5 hours when all cores are used.
+
+2. Our algorithms is non-deterministic when multiple threads are used. (That
+   is, the results can be slightly different when you run the script two or
+   more times.) In our experience, the variances generally do not exceed
+   0.0001 (LogLoss).
+
+3. This script generates a prediction with around 0.44490/0.44480 on 
+   public/private leaderboards. If you want the prediction with around 
+   0.44460/0.44450, please change the following setting in run.py.
+
+     ./gbdt -t 30        --->         ./gbdt -t 50  
+
+     ./fm -k 4 -t 11     --->         ./fm -k 8 -t 15
+
+   Training with this setting takes around 8 hours on our machine.
+
+4. The dataset used for competiion was officially removed after the end of the
+   competiion. Though Criteo released another dataset, the format is different
+   from the dataset we used in the competition. So please notice that you need
+   the dataset used in the competition to run our code.
+
+5. If you have any question, please send your email to:
+
+     guestwalk@gmail.com (Yu-Chin's email)
