@@ -1,0 +1,56 @@
+Data Format
+===========
+The input of this GBDT solver consists of a label vector (y), a dense matrix
+(XD), and a binary sparse matrix (XS). The input format of these two matrices
+are introduced in the following two sections.
+
+Dense Matrix
+------------
+The input format is:
+
+<label> <value_1> <value_2> ... 
+.
+.
+.
+
+Note that to represent a dense matrix, we do not have to give indices. For
+example,
+
+1 32 91 27 44
+0 13 25 55 83
+0 32 11 78 99
+
+represents:
+
+y        XD
+1   32 91 27 44
+0   13 25 55 83
+0   32 11 78 99
+
+Binary Sparse Matrix
+--------------------
+The input format is:
+
+<label> <index_1> <index_2> ... 
+.
+.
+.
+
+To represent a binary sparse matrix, we only need to know where non-zero
+elements are, so values are not specified.
+
+For example, 
+
+1 2 9 5
+0 1 3 7
+0 4 8 2
+
+represents:
+
+y          XS
+1   0 1 0 0 1 0 0 0 1
+0   1 0 1 0 0 0 1 0 0
+0   0 1 0 1 0 0 0 1 0
+
+Note that the labels in binary sparse matrix are just dummies. They do not have
+pratical use; please specify correct labels in dense matrix.
