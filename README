@@ -7,6 +7,17 @@ approach, please see
     http://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf  
 
 
+IMPORTANT
+=========
+We keep improving the qualities of our codes and documents. If you want to
+reproduce our submission, please download v1.0 from:
+
+    https://github.com/guestwalk/kaggle-2014-criteo/releases
+
+We tested this commit for several times. Except this commit, we do not
+guarantee the submission can be reproduced.
+
+
 System Requirement
 ==================
 
