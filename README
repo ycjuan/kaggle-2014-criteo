@@ -9,8 +9,8 @@ approach, please see
 
 IMPORTANT
 =========
-We keep improving the qualities of our codes and documents. If you want to
-reproduce our submission, please download v1.0 from:
+We keep improving the qualities of our codes and documents. If the only thing
+you want to do is to reproduce our submission, please download v1.0 from:
 
     https://github.com/guestwalk/kaggle-2014-criteo/releases
 
@@ -29,9 +29,48 @@ System Requirement
 
 - at least 20GB memory and 50GB disk space
 
-- The datasets used in the competition:
-  train.csv (md5sum: ebf87fe3daa7d729e5c9302947050f41) and 
-  test.csv (md5sum: 8016f59e45abb37ae7f6e7956f30e052)
+
+Get The Dataset
+===============
+
+Criteo released the data set after the end of the competition. However, the
+format of the released data set is different from the one used in the
+competition; the format used in the comptition is in csv format, while the
+released one is in text format.
+
+Our scripts require csv format. If you already have the dataset used in the
+competition, please skip to the next section. Otherwise, we provide a script to
+convert the files in text format to csv format. Please follow these steps:
+
+1. Download the data set from Criteo.
+    
+    http://labs.criteo.com/downloads/2014-kaggle-display-advertising-challenge-dataset
+
+2. Decompress and make sure the files are correct.
+    
+    $ md5sum dac.tar.gz
+    df9b1b3766d9ff91d5ca3eb3d23bed27  dac.tar.gz
+
+    $ tar -xzf dac.tar.gz
+
+    $ md5sum train.txt test.txt
+    4dcfe6c4b7783585d4ae3c714994f26a  train.txt
+    94ccf2787a67fd3d6e78a62129af0ed9  test.txt
+
+
+3. Use ``txt2csv.py'' to convert training and test data to csv format.
+    
+    $ converters/txt2csv.py tr train.txt train_.csv
+
+    $ converters/txt2csv.py te test.txt test_.csv
+
+4. Calculate the checksum of produced file.
+    
+    $ md5sum train_.csv test_.csv
+    ebf87fe3daa7d729e5c9302947050f41  train_.csv
+    8016f59e45abb37ae7f6e7956f30e052  test_.csv
+
+Now you can follow the steps in ``Step-by-step'' section to run our experiments.
 
 
 Step-by-step
@@ -75,11 +114,12 @@ The Whole Dataset
 -----------------
 
 1. Copy or link the training and test data to this directory. Their name should 
-   be "train.csv" and "test.csv", respectively.
+   be "train.csv" and "test.csv", respectively. Do the checksum to make sure
+   they are correct.
 
-2. Check if your dataset is correct.
-
-     $ ./check.py
+     $ md5sum train.csv test.csv
+     ebf87fe3daa7d729e5c9302947050f41  train.csv
+     8016f59e45abb37ae7f6e7956f30e052  test.csv
 
 2. Compile excutables, prepare files, and scan necessary information from the
    training data. These step takes around an hour.
@@ -115,11 +155,6 @@ Miscellaneous
 
    Training with this setting takes around 8 hours on our machine.
 
-4. The dataset used for competiion was officially removed after the end of the
-   competiion. Though Criteo released another dataset, the format is different
-   from the dataset we used in the competition. So please notice that you need
-   the dataset used in the competition to run our code.
-
-5. If you have any question, please send your email to:
+4. If you have any question, please send your email to:
 
      guestwalk@gmail.com (Yu-Chin's email)
