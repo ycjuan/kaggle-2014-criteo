@@ -32,17 +32,6 @@ def gen_feats(row):
         feats.append(key)
     return feats
 
-def gen_hashed_svm_feats(feats, nr_bins, coef=None):
-    feats = [hashstr(feat, nr_bins) for feat in feats]
-    feats = list(set(feats))
-    feats.sort()
-    if coef is not None:
-        val = coef
-    else:
-        val = round(1/math.sqrt(float(len(feats))), 5)
-    feats = ['{0}:{1}'.format(idx, val) for idx in feats]
-    return feats
-
 def read_freqent_feats(threshold=10):
     frequent_feats = set()
     for row in csv.DictReader(open('fc.trva.t10.txt')):
@@ -50,16 +39,6 @@ def read_freqent_feats(threshold=10):
             continue
         frequent_feats.add(row['Field']+'-'+row['Value'])
     return frequent_feats
-
-def gen_hashed_fm_feats(feats, nr_bins, coef=None):
-    feats = [(field, hashstr(feat, nr_bins)) for (field, feat) in feats]
-    feats.sort()
-    if coef is not None:
-        val = coef
-    else:
-        val = round(1/math.sqrt(float(len(feats))), 5)
-    feats = ['{0}:{1}:{2}'.format(field, idx, val) for (field, idx) in feats]
-    return feats
 
 def split(path, nr_thread, has_header):
 
