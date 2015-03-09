@@ -1,12 +1,12 @@
-all: gbdt fm tr.csv te.csv fc.trva.t10.txt
+all: gbdt ffm tr.csv te.csv fc.trva.t10.txt
 
 gbdt:
 	make -C solvers/gbdt
 	ln -sf solvers/gbdt/gbdt
 
-fm:
-	make -C solvers/fm
-	ln -sf solvers/fm/fm
+ffm:
+	make -C solvers/ffm
+	ln -sf solvers/ffm/ffm
 
 tr.csv:
 	ln -s train.csv tr.csv
@@ -18,6 +18,6 @@ fc.trva.t10.txt:
 	./utils/count.py tr.csv > fc.trva.t10.txt
 
 clean:
-	rm -f gbdt fm fc.trva.t10.txt submission.csv *.fm* te.csv tr.csv
+	rm -f gbdt ffm fc.trva.t10.txt submission.csv *.sp* te.csv tr.csv
 	make -C solvers/gbdt clean
-	make -C solvers/fm clean
+	make -C solvers/ffm clean

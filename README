@@ -6,10 +6,15 @@ approach, please see
 
     http://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf  
 
-Contributors
-============
 
-Yu-Chin Juan, Wei-Sheng Chin, and Yong Zhuang
+LIBFFM
+======
+
+This most important model used in this solution is called ``field-aware
+factorization machines.'' If you want to use this model, please download LIBFFM
+from:
+
+    http://www.csie.ntu.edu.tw/~r01922136/libffm
 
 
 IMPORTANT
@@ -156,10 +161,16 @@ Miscellaneous
 
      ./gbdt -t 30        --->         ./gbdt -t 50  
 
-     ./fm -k 4 -t 11     --->         ./fm -k 8 -t 15
+     ./ffm -k 4 -t 11     --->         ./ffm -k 8 -t 15
 
    Training with this setting takes around 8 hours on our machine.
 
-4. If you have any question, please send your email to:
 
-     guestwalk@gmail.com (Yu-Chin's email)
+Contributors
+============
+
+Yu-Chin Juan, Wei-Sheng Chin, and Yong Zhuang
+
+If you have any question, please send your email to:
+
+    guestwalk@gmail.com (Yu-Chin's email)
