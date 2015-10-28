@@ -59,15 +59,19 @@ convert the files in text format to csv format. Please follow these steps:
 
 3. Use ``txt2csv.py'' to convert training and test data to csv format.
     
-    $ converters/txt2csv.py tr train.txt train_.csv
+    $ converters/txt2csv.py tr train.txt train.csv
 
-    $ converters/txt2csv.py te test.txt test_.csv
+    $ converters/txt2csv.py te test.txt test_without_label.csv
 
-4. Calculate the checksum of produced file.
+4. Add dummy labels to test.csv to make the format be consistent with train.csv.
+
+	$ utils/add_dummy_label.py test_without_label.csv test.csv
+
+5. Calculate the checksum of produced file.
     
-    $ md5sum train_.csv test_.csv
-    ebf87fe3daa7d729e5c9302947050f41  train_.csv
-    8016f59e45abb37ae7f6e7956f30e052  test_.csv
+    $ md5sum train.csv test.csv
+    ebf87fe3daa7d729e5c9302947050f41  train.csv
+    cd6ac893856ab5aa904ec1ad5ef9218b  test.csv
 
 Now you can follow the steps in ``Step-by-step'' section to run our experiments.
 
@@ -85,8 +89,8 @@ Tiny Example
 
 1. Create two symbolic links.
 
-     $ ln -s train.tiny.csv train.csv
-     $ ln -s test.tiny.csv test.csv
+     $ ln -s train.tiny.csv tr.csv
+     $ ln -s test.tiny.csv te.csv
 
 2. Compile excutables and prepare files.
 
@@ -99,25 +103,15 @@ Tiny Example
 4. Generate the checksum for submission.csv.
 
      $ md5sum submission.csv
-     d29c2f9e846a0ea77a6f56e983316360  submission.csv
+     19a913d1577c3d419f62e38c34305341  submission.csv
 
-   If you see the above checksum, congratulations!! Please run the following
-   command and move to the next sub-section.
-
-     $ make clean
-     $ rm -f train.csv test.csv
 
 
 The Whole Dataset
 -----------------
 
-1. Copy or link the training and test data to this directory. Their name should 
-   be "train.csv" and "test.csv", respectively. Do the checksum to make sure
-   they are correct.
-
-     $ md5sum train.csv test.csv
-     ebf87fe3daa7d729e5c9302947050f41  train.csv
-     8016f59e45abb37ae7f6e7956f30e052  test.csv
+1. Copy or link the dataset generated in the section ``Get The Dataset'' to 
+   this directory. Their names should be "tr.csv" and "te.csv", respectively.
 
 2. Compile excutables and prepare files.
     
