@@ -79,6 +79,10 @@ Now you can follow the steps in ``Step-by-step'' section to run our experiments.
 Step-by-step
 ============
 
+First, compile executables:
+
+    $ make
+
 This section is divided into two parts. The first part introduces how to run
 our code with a toy example. After you finish this part, please follow the
 second part to run with the whole dataset.
@@ -92,15 +96,11 @@ Tiny Example
      $ ln -s train.tiny.csv tr.csv
      $ ln -s test.tiny.csv te.csv
 
-2. Compile excutables and prepare files.
+2. Generate the prediction file "submission.csv".
 
-     $ make
+     $ run.py
 
-3. Generate the prediction file "submission.csv".
-
-     $ ./run.py
-
-4. Generate the checksum for submission.csv.
+3. Generate the checksum for submission.csv.
 
      $ md5sum submission.csv
      19a913d1577c3d419f62e38c34305341  submission.csv
@@ -113,11 +113,7 @@ The Whole Dataset
 1. Copy or link the dataset generated in the section ``Get The Dataset'' to 
    this directory. Their names should be "tr.csv" and "te.csv", respectively.
 
-2. Compile excutables and prepare files.
-    
-     $ make
-
-3. Generate the prediction file "submission.csv". (You may want to use more
+2. Generate the prediction file "submission.csv". (You may want to use more
    threads. Please see "Miscellaneous 1".)
 
      $ run.py
