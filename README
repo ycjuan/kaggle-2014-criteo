@@ -4,7 +4,7 @@
 This README introduces how to run our code up. For the introduction to our
 approach, please see 
 
-    http://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf  
+    http://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf
 
 
 LIBFFM
@@ -17,17 +17,6 @@ from:
     http://www.csie.ntu.edu.tw/~r01922136/libffm
 
 
-IMPORTANT
-=========
-We keep improving the qualities of our codes and documents. If the only thing
-you want to do is to reproduce our submission, please download v1.0 from:
-
-    https://github.com/guestwalk/kaggle-2014-criteo/releases
-
-We tested this commit for several times. Except this commit, we do not
-guarantee the submission can be reproduced.
-
-
 System Requirement
 ==================
 
@@ -37,7 +26,7 @@ System Requirement
 
 - g++ (with C++11 and OpenMP support)
 
-- at least 20GB memory and 50GB disk space
+- at least 40GB memory and 100GB disk space
 
 
 Get The Dataset
@@ -99,8 +88,7 @@ Tiny Example
      $ ln -s train.tiny.csv train.csv
      $ ln -s test.tiny.csv test.csv
 
-2. Compile excutables, prepare files, and scan necessary information from the
-   training data.
+2. Compile excutables and prepare files.
 
      $ make
 
@@ -131,8 +119,7 @@ The Whole Dataset
      ebf87fe3daa7d729e5c9302947050f41  train.csv
      8016f59e45abb37ae7f6e7956f30e052  test.csv
 
-2. Compile excutables, prepare files, and scan necessary information from the
-   training data. These step takes around an hour.
+2. Compile excutables and prepare files.
     
      $ make
 
@@ -147,30 +134,29 @@ Miscellaneous
 
 1. By default we use only one thread, so it may take a long time to train the
    model. If you have multi-core CPUs, you may want to set NR_THREAD in run.py
-   to use all cores. On our machine with two six-core CPUs (intel E5-2620), it
-   takes around 3.5 hours when all cores are used.
+   to use more cores. 
 
-2. Our algorithms is non-deterministic when multiple threads are used. (That
+2. Our algorithms is non-deterministic when multiple threads are used. That
    is, the results can be slightly different when you run the script two or
-   more times.) In our experience, the variances generally do not exceed
-   0.0001 (LogLoss).
+   more times. In our experience, the variances of logloss generally do not 
+   exceed 0.0001.
 
-3. This script generates a prediction with around 0.44490/0.44480 on 
-   public/private leaderboards. If you want the prediction with around 
-   0.44460/0.44450, please change the following setting in run.py.
+3. This script generates a prediction with around 0.44510 / 0.44500 on 
+   public / private leaderboards, which are slightly worse than what we had 
+   during the competition. The difference is due to some minor changes.
+   
+   If you want to reproduce our best results, please do:
+     
+     $ git checkout v1.0
 
-     ./gbdt -t 30        --->         ./gbdt -t 50  
-
-     ./ffm -k 4 -t 11     --->         ./ffm -k 8 -t 15
-
-   Training with this setting takes around 8 hours on our machine.
+   For detailed instructions, please follow README in that version.
 
 
 Contributors
 ============
 
-Yu-Chin Juan, Wei-Sheng Chin, and Yong Zhuang
+YuChin Juan, Wei-Sheng Chin, and Yong Zhuang
 
 If you have any question, please send your email to:
 
-    guestwalk@gmail.com (Yu-Chin's email)
+    guestwalk@gmail.com (YuChin)

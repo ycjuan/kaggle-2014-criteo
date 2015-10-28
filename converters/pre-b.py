@@ -18,9 +18,7 @@ parser.add_argument('out_path', type=str)
 args = vars(parser.parse_args())
 
 def gen_hashed_fm_feats(feats, nr_bins):
-    feats = [(field, hashstr(feat, nr_bins)) for (field, feat) in feats]
-    feats.sort()
-    feats = ['{0}'.format(idx) for (field, idx) in feats]
+    feats = ['{0}:{1}:1'.format(field-1, hashstr(feat, nr_bins)) for (field, feat) in feats]
     return feats
 
 frequent_feats = read_freqent_feats(args['threshold'])
