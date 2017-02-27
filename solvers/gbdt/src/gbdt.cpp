@@ -7,6 +7,16 @@
 #include "gbdt.h"
 #include "timer.h"
 
+/*
+This implementation is based on Algo 5 in the following paper:
+
+   http://statweb.stanford.edu/~jhf/ftp/trebst.pdf
+
+We do not have a plan to maintain this part of code, so there is no documents.
+
+We recommend you either check the above document, or use some exisiting packages such as xgboost.
+*/
+
 namespace {
 
 float calc_bias(std::vector<float> const &Y)
