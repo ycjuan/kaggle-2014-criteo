@@ -43,7 +43,7 @@ convert the files in text format to csv format. Please follow these steps:
 
 1. Download the data set from Criteo.
     
-    http://labs.criteo.com/downloads/2014-kaggle-display-advertising-challenge-dataset
+    http://labs.criteo.com/2014/02/kaggle-display-advertising-challenge-dataset/
 
 2. Decompress and make sure the files are correct.
     
